@@ -1,6 +1,8 @@
 from tkinter import ttk
 from tkinter import *
 from PIL import Image, ImageTk
+from form_login import FormLoginDesigner
+from PostgreDB import PostgreDB
 
 class Proveedores:
     def __init__(self, window):
@@ -25,10 +27,10 @@ class Proveedores:
         self.name.focus()
         self.name.grid(row = 1, column = 1)
 
-        #ingreso precio
-        Label(frame, text = 'Precio: ').grid(row = 2, column = 0)
-        self.price = Entry(frame)
-        self.price.grid(row = 2, column = 1)
+        #ingreso valor de factura
+        Label(frame, text = 'Valor: ').grid(row = 2, column = 0)
+        self.value = Entry(frame)
+        self.value.grid(row = 2, column = 1)
 
         # boton agregar proveedor
         ttk.Button(frame, text = 'Guardar proveedor', command = self.add_proveedor).grid(row = 3, columnspan = 2, sticky = W + E)
@@ -37,6 +39,7 @@ class Proveedores:
         pass
 
 if __name__ == '__main__':
-    window = Tk()
-    applicacion = Proveedores(window)
-    window.mainloop()
+    cursor = PostgreDB()
+    #window = Tk()
+    applicacion = FormLoginDesigner(cursor)
+    #window.mainloop()
